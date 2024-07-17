@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "tokyo-night";
+  src: url("../assets/fonts/night-in-tokyo-regular.ttf");
+}
+@font-face {
+  font-family: "tokyo-night-bold";
+  src: url("../assets/fonts/night-in-tokyo-bold.ttf");
+}
+@font-face {
+  font-family: "tokyo-night-shadow";
+  src: url("../assets/fonts/night-in-tokyo.shadow-regular.ttf");
+}
+
+$tokyo-night-fonts : tokyo-night, Helvetica, sans-serif;
+$tokyo-night-bold-fonts : tokyo-night-bold, Helvetica, sans-serif;
+$tokyo-night-shadow-fonts : tokyo-night-shadow, Helvetica, sans-serif;

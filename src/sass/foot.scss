@@ -1,0 +1,30 @@
+.foot-bar{
+  /* padding-block: .25em; */
+  padding-inline: .25em;
+  display: flex;
+  justify-content: space-between;
+  .round-button{
+    /* width: 2rem; */
+    /* height: 2rem; */
+    padding: .4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    &:hover{
+      cursor: pointer;
+      border: 1px solid white;
+    }
+    .sound{
+      margin-top: 2px;
+      margin-left: 2px;
+      font-size: 1.5rem;
+    }
+    .question{
+      font-size: 1.5em;
+      margin-inline: .2em;
+    }
+  }
+
+}
