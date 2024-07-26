@@ -1,66 +1,31 @@
 $card-width: 300px;
 $card-height: 400px;
 
-.flip-card{
-  background-color: transparent;
+.card{
   width: $card-width;
   height: $card-height;
-  perspective: 1000px;
-  overflow: hidden;
-  img{
-    width: 100%;
-    height: 100%;
-    border-radius: 1rem;
-  }
-  padding: .1rem;
-}
-.flip-card-inner{
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: 0 1px 5px #00000099;
+
+  border-radius: 10px;
+  /* border: 1px solid black; */
+   background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+
   position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-  border-radius: 1em;
-}
-.cover-card{
-  /* box-shadow: 0 1px 5px #00000099; */
-  /* transition: box-shadow 300ms ease-out; */
-  transition: box-shadow 300ms ease-out;
+  transition: box-shadow, 300ms, ease-out, transform, 300ms, ease-out;
+  /* transition: transform, 300ms, ease-out; */
   transform: rotate3d(0);
+
   &:hover{
     transition-duration: 150ms;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 5px 20px 5px #00000044;
   }
+
   .glow{
     position: absolute;
     width: 100%;
     height: 100%;
     left: 0;
-    right: 0;
-     background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
+    top: 0;
+    background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
   }
-}
-.card-rotate{
-  transform: rotateY(180deg);
-}
-.flip-card-front, .flip-card-back{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-.flip-card-back{
-  display: flex;
-  flex-direction: column;
-  padding: .5em;
-}
-.flip-card-front{
-  display: flex;
-  flex-direction: column;
-}
-.flip-card-front{
-  color: white;
-  transform: rotateY(180deg);
 }
