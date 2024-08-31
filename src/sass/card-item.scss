@@ -1,32 +1,84 @@
-$card-width: 300px;
-$card-height: 400px;
+* {
+  box-sizing: border-box;
+}
 
-.card{
-  width: $card-width;
-  height: $card-height;
+#root, html {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#root {
+  font-family: system-ui, sans-serif;
+  perspective: 1500px;
+}
+
+.content{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+
+  .front,
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: #ffffff;
+  backface-visibility: hidden;
+}
+
+.back {
+  background: #03446A;
+  color: white;
+  transform: rotateY( 180deg );
+}
+}
+
+.card1 {
+  font-weight: bold;
+  text-align: right;
+  color: #181a1a;
+  z-index: 1;
+  width:  200px;
+  // height: 200px;
+  aspect-ratio: 1 / 1.546;
+  // scale: .75; 
   box-shadow: 0 1px 5px #00000099;
 
   border-radius: 10px;
-  /* border: 1px solid black; */
-   background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+  background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+  background-size: cover;
 
   position: relative;
-  /* perspective: 1000px; */
-  transition: box-shadow, 300ms, ease-out, transform, 300ms, ease-out;
-  /* transition: transform, 300ms, ease-out; */
+  // perspective: 500px;
+
+  transition-duration: 300ms;
+  transition-property: transform, box-shadow;
+  transition-timing-function: ease-out;
   transform: rotate3d(0);
-
-  &:hover{
-    transition-duration: 150ms;
-    box-shadow: 0 5px 20px 5px #00000044;
+  transform-style: preserve-3d;
+   *{
+    pointer-events: none;
   }
 
-  .glow{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
-  }
+}
+
+.card1:hover {
+  transition-duration: 150ms;
+  box-shadow: 0 5px 20px 5px #00000044;
+}
+
+.card1 .glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
 }

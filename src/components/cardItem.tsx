@@ -1,76 +1,70 @@
-import "../sass/card-item.scss"
+import "../sass/card-item.scss";
 
-import { useEffect, useRef } from 'react';
+import { useRef } from "react";
 
 export default function CardItem() {
   const cardRef = useRef<HTMLDivElement>(null);
-  let bounds: DOMRect;
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  const rotateToMouse = (e: MouseEvent): void => {
-    if (!cardRef.current) return;
+  function HandleMouse(e: MouseEvent) {
+    const mX = e.clientX;
+    const mY = e.clientY;
 
-    const mouseX: number = e.clientX;
-    const mouseY: number = e.clientY;
-    const leftX: number = mouseX - bounds.x;
-    const topY: number = mouseY - bounds.y;
-    const center: { x: number; y: number } = {
-      x: leftX - bounds.width / 2,
-      y: topY - bounds.height / 2
-    }
-    const distance: number = Math.sqrt(center.x**2 + center.y**2);
+    const target = e.target as HTMLDivElement;
+    const bound = target.getBoundingClientRect();
+    const midX = bound.width / 2;
+    const midY = bound.height / 2;
 
-    cardRef.current.style.transform = `
-      scale3d(1.07, 1.07, 1.07)
-      rotate3d(
-        ${center.y / 100},
-        ${-center.x / 100},
-        0,
-        ${Math.log(distance) * 2}deg
-      )
-    `;
+    const xD = (mX - bound.x - midX) / (bound.width / 2);
+    const yD = (mY - bound.y - midY) / (bound.height / 2);
+    target.style.transform = `rotateY(${-xD * 0.05}turn) rotateX(${
+      yD * 0.05
+    }turn)`;
+  }
 
-    const glowElement: HTMLElement | null = cardRef.current.querySelector('.glow');
-    if (glowElement) {
-      glowElement.style.backgroundImage = `
-        radial-gradient(
-          circle at
-          ${center.x * 2 + bounds.width/2}px
-          ${center.y * 2 + bounds.height/2}px,
-          #ffffff55,
-          #0000000f
-        )
-      `;
+  function flip() {
+    if (cardRef.current && contentRef.current) {
+      console.log("running");
+      cardRef.current.removeEventListener("mousemove", HandleMouse);
+      cardRef.current.style.transform = `rotateY(180deg)`;
+      // contentRef.current.style.transform=`rotateY(180deg)`
+      setTimeout(() => {
+        if (cardRef.current && contentRef.current) {
+          cardRef.current.style.transform = "";
+          // contentRef.current.style.transform=''
+        }
+      }, 500);
     }
   }
 
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    const handleMouseEnter = (): void => {
-      bounds = card.getBoundingClientRect();
-      document.addEventListener('mousemove', rotateToMouse);
-    };
-
-    const handleMouseLeave = (): void => {
-      document.removeEventListener('mousemove', rotateToMouse);
-      card.style.transform = '';
-      card.style.background = '';
-    };
-
-    card.addEventListener('mouseenter', handleMouseEnter);
-    card.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter);
-      card.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mousemove', rotateToMouse);
-    };
-  }, []);
-
   return (
-    <div className="card" ref={cardRef}>
-      <div className="glow"></div>
-    </div>
+    <>
+      <div
+        className="card1"
+        onMouseEnter={(e) => {
+          const target = e.target as HTMLDivElement;
+          target.addEventListener("mousemove", HandleMouse);
+        }}
+        onMouseLeave={(e) => {
+          const target = e.target as HTMLDivElement;
+          target.removeEventListener("mousemove", HandleMouse);
+          target.style.transform = "";
+        }}
+        ref={cardRef}
+      >
+        <div className="content" ref={contentRef}>
+          <div className="front">Front</div>
+          <div className="back">back</div>
+        </div>
+      </div>
+
+      {/* <button
+        onClick={(_) => {
+          flip()
+        }}
+      >
+        flip
+      </button> */}
+    </>
   );
 }
