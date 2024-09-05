@@ -1,13 +1,17 @@
-import ScoreBoard from "./scoreBoard.tsx";
+import ScoreBoard, { scoreBoardProps } from "./scoreBoard.tsx";
 import "../sass/title.scss"
 
-export default function TitleBar(){
+type TitleBarPropType={
+  scoreProps: scoreBoardProps
+}
+
+export default function TitleBar({scoreProps}:TitleBarPropType){
   return (
   <div className="title-bar">
       <h1 className="title">
         Memory Game
       </h1>
-     <ScoreBoard bestScore={10} currentScore={0}/>
+     <ScoreBoard bestScore={scoreProps.bestScore} currentScore={scoreProps.currentScore}/>
     </div>
   )
 }

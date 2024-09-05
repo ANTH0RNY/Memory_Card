@@ -1,4 +1,4 @@
-interface scoreBoardProps{
+export interface scoreBoardProps{
   bestScore: number,
   currentScore: number,
 }

@@ -1,12 +1,37 @@
 import "../sass/card-item.scss";
-
+import { MouseEvent as ME, useEffect } from "react";
 import { useRef } from "react";
+import { gameCard } from "../utils/game";
 
-export default function CardItem() {
+type cardItemProps = {
+  card: gameCard;
+  flipTrigger: boolean | null;
+  clickHandler?: (event: ME<HTMLDivElement, MouseEvent>, id: number) => void;
+};
+
+export default function CardItem({
+  card,
+  clickHandler = () => { },
+  flipTrigger,
+}: cardItemProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const isFliping = useRef(false)
+
+
+
+  useEffect(() => {
+    if (flipTrigger != null) {
+      flip()
+    }
+
+  }, [flipTrigger])
+
+
 
   function HandleMouse(e: MouseEvent) {
+    if (isFliping.current == true) return
+  
     const mX = e.clientX;
     const mY = e.clientY;
 
@@ -17,43 +42,59 @@ export default function CardItem() {
 
     const xD = (mX - bound.x - midX) / (bound.width / 2);
     const yD = (mY - bound.y - midY) / (bound.height / 2);
-    target.style.transform = `rotateY(${-xD * 0.05}turn) rotateX(${
-      yD * 0.05
-    }turn)`;
+
+    target.style.transform = `rotateY(${xD * 0.05}turn) rotateX(${-yD * 0.05
+      }turn)`;
+  }
+
+  function handleMouseEnter(e: ME<HTMLDivElement, MouseEvent>) {
+    const target = e.target as HTMLDivElement;
+    target.addEventListener("mousemove", HandleMouse);
   }
 
   function flip() {
-    if (cardRef.current && contentRef.current) {
-      console.log("running");
+    if (cardRef.current && contentRef.current && !isFliping.current) {
+      isFliping.current = true
       cardRef.current.removeEventListener("mousemove", HandleMouse);
-      cardRef.current.style.transform = `rotateY(180deg)`;
-      // contentRef.current.style.transform=`rotateY(180deg)`
+      cardRef.current.style.transform = `rotateY(0.5turn)`;
+
+
       setTimeout(() => {
         if (cardRef.current && contentRef.current) {
           cardRef.current.style.transform = "";
-          // contentRef.current.style.transform=''
         }
+        isFliping.current = false
       }, 500);
     }
   }
+  const name = card.img.split("/").at(-1)?.split(".").at(0)?.replaceAll("_", " ") ?? "";
+
+
 
   return (
     <>
       <div
         className="card1"
-        onMouseEnter={(e) => {
-          const target = e.target as HTMLDivElement;
-          target.addEventListener("mousemove", HandleMouse);
-        }}
+        // onMouseEnter={(e) => {
+        //   const target = e.target as HTMLDivElement;
+        //   target.addEventListener("mousemove", HandleMouse);
+        // }}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={(e) => {
           const target = e.target as HTMLDivElement;
           target.removeEventListener("mousemove", HandleMouse);
           target.style.transform = "";
         }}
         ref={cardRef}
+        // style={{ transform:  `rotateY(${xV * 0.05}turn) rotateX(${-yV * 0.05 }turn)`}}
+        onClick={(e) => clickHandler(e, card.id)}
       >
         <div className="content" ref={contentRef}>
-          <div className="front">Front</div>
+          {/* <img src={imgPath} alt="img" className="front" /> */}
+          <div className="front">
+            <img src={card.img} alt={name} className="front-img" />
+            <p className="front-text">{name}</p>
+          </div>
           <div className="back">back</div>
         </div>
       </div>
