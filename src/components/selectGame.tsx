@@ -1,6 +1,6 @@
 import "../sass/selectGame.scss"
 import { GameLevelTypes } from "./main"
-import img1 from "../assets/img/images1.png"
+import img1 from "/images1.png"
 
 type SelectGamePropsType={
     clickHandler: (levelName: GameLevelTypes)=>void

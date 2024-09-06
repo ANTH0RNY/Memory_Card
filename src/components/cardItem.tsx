@@ -1,5 +1,5 @@
 import "../sass/card-item.scss";
-import img1 from "../assets/img/images1.png"
+import img1 from "/images1.png"
 import { MouseEvent as ME, useEffect } from "react";
 import { useRef } from "react";
 import { gameCard } from "../utils/game";

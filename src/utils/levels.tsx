@@ -63,7 +63,7 @@ type LevelTypes = {
 
 
 
-const HardData: LevelTypes = {
+export const HardData: LevelTypes = {
     name: "Hard",
     cards: [
         { id: IdGenerator.id, img: isekai_0 },
@@ -90,7 +90,7 @@ const HardData: LevelTypes = {
         { id: IdGenerator.id, img: isekai_21 },
     ]
 }
-const MediumData: LevelTypes = {
+export const MediumData: LevelTypes = {
     name: "Medium",
     cards: [
         { id: IdGenerator.id, img: isekai_sides_0 },
@@ -116,7 +116,7 @@ const MediumData: LevelTypes = {
     ]
 }
 
-const EasyData: LevelTypes = {
+export const EasyData: LevelTypes = {
     name: "Easy",
     cards: [
         { id: IdGenerator.id, img: shounen_0 },

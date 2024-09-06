@@ -1,5 +1,5 @@
 import ScoreBoard, { scoreBoardProps } from "./scoreBoard.tsx";
-import img1 from "../assets/img/images1.png"
+import img1 from "/images1.png"
 import "../sass/title.scss"
 
 type TitleBarPropType={
