@@ -68,7 +68,7 @@ export default function CardItem({
       }, 500);
     }
   }
-  const name = card.img.split("/").at(-1)?.split(".").at(0)?.replaceAll("_", " ") ?? "";
+  const name = card.img.split("/").at(-1)?.split(".").at(0)?.split("-").at(0)?.replaceAll("_", " ") ?? "";
 
 
 
