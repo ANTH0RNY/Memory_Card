@@ -22,7 +22,7 @@ export default function PlayArea({ game, handlePlay }: PlayAreaPropsType) {
     // console.log(JSON.stringify(game.nonSelectedCards))
     // setIsGameOver(gameOver)
     if (!gameOver) {
-      // console.log(gameOver)
+      console.log(gameOver)
       setFlip(!flip);
       setCards(game.shuffle());
     }
