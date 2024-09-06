@@ -1,4 +1,5 @@
 import "../sass/card-item.scss";
+import img1 from "../assets/img/images1.png"
 import { MouseEvent as ME, useEffect } from "react";
 import { useRef } from "react";
 import { gameCard } from "../utils/game";
@@ -75,10 +76,7 @@ export default function CardItem({
     <>
       <div
         className="card1"
-        // onMouseEnter={(e) => {
-        //   const target = e.target as HTMLDivElement;
-        //   target.addEventListener("mousemove", HandleMouse);
-        // }}
+        
         onMouseEnter={handleMouseEnter}
         onMouseLeave={(e) => {
           const target = e.target as HTMLDivElement;
@@ -86,7 +84,6 @@ export default function CardItem({
           target.style.transform = "";
         }}
         ref={cardRef}
-        // style={{ transform:  `rotateY(${xV * 0.05}turn) rotateX(${-yV * 0.05 }turn)`}}
         onClick={(e) => clickHandler(e, card.id)}
       >
         <div className="content" ref={contentRef}>
@@ -95,7 +92,9 @@ export default function CardItem({
             <img src={card.img} alt={name} className="front-img" />
             <p className="front-text">{name}</p>
           </div>
-          <div className="back">back</div>
+          <div className="back">
+            <img src={img1} alt="logo" />
+          </div>
         </div>
       </div>
 

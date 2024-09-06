@@ -1,4 +1,5 @@
 @use 'fonts';
+
 .select-game {
     width: 100%;
     height: 100%;
@@ -6,7 +7,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
     .items {
         // margin-top: auto;
         display: flex;
@@ -14,6 +15,10 @@
         justify-content: flex-end;
         align-items: center;
         flex-direction: column;
+
+        img {
+            width: 30rem;
+        }
     }
 
     h1 {
@@ -33,12 +38,19 @@
             font-family: fonts.$tokyo-night-fonts;
             font-size: 1.5rem;
             font-weight: bolder;
-            border-width: 1px;
+            border-width: 4px;
+            // border-color: white;
+            border-color: white;
+            outline: none;
             border-radius: .5rem;
             transition: scale .3s ease-in-out;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
-                scale: 1.1;
+                // scale: 1.1;
+                // border-color: none;
+                color: white;
+                background-color: rgba($color: #000000, $alpha: 0.8);
             }
         }
 

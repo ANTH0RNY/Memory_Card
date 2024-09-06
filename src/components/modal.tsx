@@ -3,10 +3,11 @@ import { ReactNode, useEffect, useRef } from "react"
 
 type ModalPropsType = {
     openModal: boolean,
-    children:ReactNode
+    children:ReactNode,
+    classes?: string
 }
 
-export default function Modal({ openModal, children }: ModalPropsType) {
+export default function Modal({ openModal, children, classes="" }: ModalPropsType) {
     const dialogRef = useRef<HTMLDialogElement>(null)
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function Modal({ openModal, children }: ModalPropsType) {
         // closed.current=false
     }
     return (
-        <dialog ref={dialogRef} className="modal" >
+        <dialog ref={dialogRef} className={`modal ${classes}`} >
             <div className="modal-wrapper">
                 {/* <button className="close-btn" autoFocus onClick={close}>&#10005;</button> */}
                 { 

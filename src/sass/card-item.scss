@@ -1,7 +1,15 @@
 @keyframes flip {
-  0%{transform: rotateY(0deg);}
-  50%{transform: rotateY(0.25turn);}
-  100%{transform: rotateY(0.5turn);}
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(0.25turn);
+  }
+
+  100% {
+    transform: rotateY(0.5turn);
+  }
 }
 
 .content {
@@ -9,15 +17,17 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  
+
   .front-img {
     height: 100%;
     width: 100%;
+    border-radius: 10px;
   }
-  
+
   .front-text {
+    border-radius: 0 0 10px 10px;
     position: relative;
-    bottom: 1.5rem;
+    bottom: 1.58rem;
     // top: 2.5%;
     background-color: rgba($color: #000000, $alpha: 0.5);
     text-align: center;
@@ -28,6 +38,10 @@
     // overflow-x: scroll;
   }
 
+  .front {
+    background-color: transparent;
+  }
+
   .front,
   .back {
     position: absolute;
@@ -35,13 +49,25 @@
     width: 100%;
     backface-visibility: hidden;
     padding: .5rem;
+    border-radius: 10px;
   }
-  
+
   .back {
     color: white;
     transform: rotateY(180deg);
-    background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
-    border-radius: 10px;
+    // background-image: url(https://images.unsplash.com/photo-1557672199-6e8c8b2b8fff?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80);
+    // background-color: #e5e5f7;
+    background-color: #e5e5f7;
+    opacity: 0.9;
+    background-image: radial-gradient(circle at center center, #69087b, #e5e5f7), repeating-radial-gradient(circle at center center, #69087b, #69087b, 10px, transparent 20px, transparent 10px);
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 4rem;
+    }
   }
 }
 
@@ -52,23 +78,26 @@
   z-index: 1;
   width: 200px;
   aspect-ratio: 1 / 1.546;
-  box-shadow: 0 1px 5px #00000099;
+  // box-shadow: 0 1px 5px #00000099;
   border-radius: 10px;
   background-size: cover;
   position: relative;
-  
+
   transition-duration: 100ms;
   transition-property: transform, box-shadow;
   transition-timing-function: ease-out;
   transform: rotate3d(0);
   transform-style: preserve-3d;
-  &:hover{
+
+  &:hover {
     cursor: pointer;
   }
+
   * {
     pointer-events: none;
   }
 }
+
 .card1:hover {
   transition-duration: 150ms;
   box-shadow: 0 5px 20px 5px #00000044;

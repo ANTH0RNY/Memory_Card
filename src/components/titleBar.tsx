@@ -1,4 +1,5 @@
 import ScoreBoard, { scoreBoardProps } from "./scoreBoard.tsx";
+import img1 from "../assets/img/images1.png"
 import "../sass/title.scss"
 
 type TitleBarPropType={
@@ -8,9 +9,10 @@ type TitleBarPropType={
 export default function TitleBar({scoreProps}:TitleBarPropType){
   return (
   <div className="title-bar">
-      <h1 className="title">
-        Memory Game
-      </h1>
+      {/* <h1 className="title"> */}
+        {/* Isekai Memory Game */}
+<img src={img1} alt="logo" />
+      {/* </h1> */}
      <ScoreBoard bestScore={scoreProps.bestScore} currentScore={scoreProps.currentScore}/>
     </div>
   )

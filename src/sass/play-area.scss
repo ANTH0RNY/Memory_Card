@@ -4,12 +4,16 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  
+
   perspective: 1500px;
   overflow-y: scroll;
   padding-block: 1rem;
   perspective: 1500px;
-  ::-webkit-scrollbar-thumb{
-    background-color: transparent;
-  }
+
+  // ::-webkit-scrollbar-thumb{
+  //   background-color: transparent;
+  // }
+}
+::-webkit-scrollbar {
+  display: none;
 }
